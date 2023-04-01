@@ -10,6 +10,8 @@
 
      yum install fontconfig java-11-openjdk -y
      yum install jenkins -y
+     service jenkins status
+     service jenkins start
   
 #The rpm packages were signed using this key:
 #use:
