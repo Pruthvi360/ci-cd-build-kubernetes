@@ -8,8 +8,8 @@
 
 #Use:
 
-     yum install fontconfig java-11-openjdk
-     yum install jenkins
+     yum install fontconfig java-11-openjdk -y
+     yum install jenkins -y
   
 #The rpm packages were signed using this key:
 #use:
