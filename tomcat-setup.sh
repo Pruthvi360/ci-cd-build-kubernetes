@@ -18,6 +18,15 @@ tar -xvzf /opt/apache-tomcat-10.1.7.tar.gz
 chmod +x /opt/apache-tomcat-10.1.7/bin/startup.sh 
 chmod +x /opt/apache-tomcat-10.1.7/bin/shutdown.sh
 
+## Run startup.sh
+
+/opt/apache-tomcat-10.1.7/bin/startup.sh
+
+## Editing context.xml to make sure the it is accessable from outside than local host 127.0.0.0
+
+sed -i '21,22d' /opt/apache-tomcat-10.1.7/webapps/host-manager/META-INF/context.xml
+sed -i '21,22d' /opt/apache-tomcat-10.1.7/webapps/manager/META-INF/context.xml
+
 ## create link files for tomcat startup.sh and shutdown.sh
 
 ln -s /opt/apache-tomcat-10.1.7/bin/startup.sh /usr/local/bin/tomcatup
