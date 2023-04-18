@@ -102,6 +102,32 @@ echo $PATH
 mvn -v
 
 
+## 5.2) ADD MAVEN PLUGIN
+
+Click Dashboard > manage jenkins> plugins > Available > search maven > check **maven integration** > install withour restart
+
+## 5.3) CONFIGURE MAVEN
+
+Click Dashboard > manage jenkins> TOOLS > 
+
+1. jdk > Name: Java-11 > JAVA_HOME: /usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.el9.x86_64 > MAVEN ADD > Name: Maven-3.9.1 MAVEN_HOME: /opt/maven > apply & save.
+
+## 6) Build a Java Project Using Jenkins 
+
+# need to create Build job to build the source code pulled form the git repo.
+
+1. Click Dashboard > new item > Name:Build_Maven_Artifact > select maven project > Source_code_management:check Git,
+2. repo url:https://github.com/Pruthvi360/ci-cd-hello-world.git
+3. Build > Root POM: pom.xml> Goals and options: clean install  (Check maven lifecycle)
+4. Apply & save
+
+## 6.1) Run the job & Click build history output
+
+## 6.2) **Click Build_Maven_Artifact JOB** and navigate workspace > webapp > target > webapp.war
+
+
+
+
 
 
 
