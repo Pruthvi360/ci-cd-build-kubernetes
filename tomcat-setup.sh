@@ -20,7 +20,7 @@ chmod +x /opt/apache-tomcat-10.1.7/bin/shutdown.sh
 
 ## create link files for tomcat startup.sh and shutdown.sh
 
-ln -s /opt/apache-tomcat-<version>/bin/startup.sh /usr/local/bin/tomcatup
-ln -s /opt/apache-tomcat-<version>/bin/shutdown.sh /usr/local/bin/tomcatdown
+ln -s /opt/apache-tomcat-10.1.7/bin/startup.sh /usr/local/bin/tomcatup
+ln -s /opt/apache-tomcat-10.1.7/bin/shutdown.sh /usr/local/bin/tomcatdown
 
 ## 
