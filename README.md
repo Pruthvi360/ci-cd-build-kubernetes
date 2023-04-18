@@ -46,6 +46,10 @@ Click Dashboard > manage jenkins > manage pulgins > Avaliable > Search for githu
 
 Click Dashboard > manage jenkins > click tools > go for git > name git > Path to Git executable: /usr/bin/git (Exceute cmd **whereis git** to get path)> save
 
+## 4) Run Jenkins Job to Pull Code from GitHub
+
+
+
 
 
  
