@@ -1,4 +1,4 @@
-# Tomcat installation on EC2 instance
+# Tomcat installation on Compute instance GCP
 - Follow this video lecture in Valaxy Technologies **[YouTube Channel](https://youtu.be/68WNroQBUts)**  
 - Complete DevOps Project course on [Udemy](https://www.udemy.com/course/valaxy-devops/?referralCode=8147A5CF4C8C7D9E253F)  
 ### Pre-requisites
@@ -9,13 +9,13 @@
    ```sh 
    # Create tomcat directory
    cd /opt
-   wget http://mirrors.fibergrid.in/apache/tomcat/tomcat-8/v8.5.35/bin/apache-tomcat-8.5.35.tar.gz
-   tar -xvzf /opt/apache-tomcat-<version>.tar.gz
+   wget [http://mirrors.fibergrid.in/apache/tomcat/tomcat-8/v8.5.35/bin/apache-tomcat-8.5.35.tar.gz](https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.7/bin/apache-tomcat-10.1.7.tar.gz)
+   tar -xvzf /opt/apache-tomcat-10.1.7.tar.gz
    ```
 1. give executing permissions to startup.sh and shutdown.sh which are under bin. 
    ```sh
-   chmod +x /opt/apache-tomcat-<version>/bin/startup.sh 
-   chmod +x /opt/apache-tomcat-<version>/bin/shutdown.sh
+   chmod +x /opt/apache-tomcat-10.1.7/bin/startup.sh 
+   chmod +x /opt/apache-tomcat-10.1.7/bin/shutdown.sh
    ```
    > Note: you may get below error while starting tomcat incase if you dont install Java   
    `Neither the JAVA_HOME nor the JRE_HOME environment variable is defined At least one of these environment variable is needed to run this program`
