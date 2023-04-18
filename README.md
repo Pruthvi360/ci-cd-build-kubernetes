@@ -125,6 +125,15 @@ Click Dashboard > manage jenkins> TOOLS >
 
 ## 6.2) **Click Build_Maven_Artifact JOB** and navigate workspace > webapp > target > webapp.war
 
+## 7) Set Up a Tomcat Server
+
+![image](https://user-images.githubusercontent.com/107435692/232724693-543643d5-09cf-4192-b5f7-1ea87552ba7e.png)
+
+## 7.1) Refer to tomcatinstall.md
+
+follow the steps in the tomcatinstall.md to complete the installation.
+
+
 
 
 
