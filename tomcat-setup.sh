@@ -33,6 +33,8 @@ sed -i '21,22d' /opt/apache-tomcat-10.1.7/webapps/manager/META-INF/context.xml
 
 ## create link files for tomcat startup.sh and shutdown.sh
 
+cd ~
+
 ehco -e "PATH=/usr/local/sbin:/usr/local/bin:b$PATH:b$HOME:bin:b$JAVA_HOME:b$M2_HOME:b$M2\nexport PATH" >> .bash_profile && source .bash_profile
 
 ln -s /opt/apache-tomcat-10.1.7/bin/startup.sh /usr/local/bin/tomcatup
