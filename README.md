@@ -176,9 +176,18 @@ git remote -v                        > used to show the remotes mapped to git re
 git branch                           > Check the branch
 git push origin master               > push the commited changes to the repository
 
-## build will trigger automatically after a change within a minute
+## 9.1) build will trigger automatically after a change within a minute
 
 Watch the Build history in jenkins and validate the changes in the tomcat server.
+
+## 10) Setup Docker
+
+![image](https://user-images.githubusercontent.com/107435692/232836351-9326f625-eec4-4a89-8d05-7aa3468c7f54.png)
+
+## 10.1) Read into Docker installation Setup
+
+Refer the Docker-install.md file
+
 
 
 
