@@ -47,3 +47,11 @@ echo "<role rolename="manager-gui"/>
 <user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
 <user username="deployer" password="deployer" roles="manager-script"/>
 <user username="tomcat" password="s3cret" roles="manager-gui"/>" >> /opt/apache-tomcat-10.1.7/conf/tomcat-users.xml
+
+
+## Starting tomcatserver
+
+tomcatup
+tomcatdown
+
+
