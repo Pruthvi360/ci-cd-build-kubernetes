@@ -30,6 +30,7 @@ chmod +x /opt/apache-tomcat-10.1.7/bin/shutdown.sh
 
 sed -i '21,22d' /opt/apache-tomcat-10.1.7/webapps/host-manager/META-INF/context.xml
 sed -i '21,22d' /opt/apache-tomcat-10.1.7/webapps/manager/META-INF/context.xml
+sed -i '19,20d' /opt/apache-tomcat-10.1.7/webapps/docs/META-INF/context.xml
 
 ## create link files for tomcat startup.sh and shutdown.sh
 
