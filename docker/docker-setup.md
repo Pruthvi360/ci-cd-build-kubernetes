@@ -1,4 +1,4 @@
-# Installing Docker on Amazon Linux server
+# Installing Docker on GCP Centos Compute instance server
 
 ### Pre-requisites
 1. GCP Centos Compute instance
