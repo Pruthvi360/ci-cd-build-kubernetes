@@ -7,6 +7,10 @@ sudo yum install java-11-openjdk -y
 # install wget
 yum install wget -y
 
+# install nano editor
+
+yum install nano -y
+
 # Create tomcat directory
 
 cd /opt
