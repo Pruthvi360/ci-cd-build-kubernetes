@@ -132,6 +132,54 @@ Click Dashboard > manage jenkins> TOOLS >
 ## 7.1) Refer to tomcatinstall.md
 
 follow the steps in the tomcatinstall.md to complete the installation.
+Run the tomcat-setup.sh
+
+## 8) Intergrate with Tomcat
+
+![image](https://user-images.githubusercontent.com/107435692/232820017-c014598d-4088-458a-aae0-9a1b0a304d4b.png)
+
+## 8.1) Install plugin Deploy-to-container
+
+Click Dashboard > manage jenkins > plugins > available > Search: Deploy to continer > check and click install withour restart.
+
+## 8.2) Configure Tomacat credentials
+
+1. Click Dashboard > manage jenkins > manage credentials > system > global > select usernam & password > specify username & password >
+2.  name: tomacat-deployer > description:tomcat-deployer.
+
+## 8.3) Create new job
+
+1. Click Dashboard > new item > Name:Deploy-to-container > Source_code_management: check git and git url > Build > Root POM: pom.xml > Goals and options: clean install
+2. Post build action > select deploy to continer > specify war file path webapp/target/webapp.war or **/*.war 
+3. Containers > Select Tomatcat 9 > Give credentials select from previously created > Tomcat URL: http://35.231.215.116:8080/ > click Apply and save
+
+## 8.4) Build Now
+
+![image](https://user-images.githubusercontent.com/107435692/232828372-05f36128-8b34-4d18-9269-9c42255ac60c.png)
+
+## 8.5) Check the webapp directory in tomcat server
+
+![image](https://user-images.githubusercontent.com/107435692/232829219-0910e43e-98e3-4b95-a2cd-85305074ab64.png)
+
+## 9) Automate Deploy When any changes in the git repo for every 1 minute
+
+Modify the existing job and Select
+
+git clone https://github.com/Pruthvi360/ci-cd-hello-world.git
+
+Edit index.jsp
+
+git status                           > It should be **modified** state
+git add .                            > In the current directory state should be **staging**
+git commit -m "Auto Tigger to CI/CD" > In the state **commited** ready to push
+git remote -v                        > used to show the remotes mapped to git remote repository
+git branch                           > Check the branch
+git push origin master               > push the commited changes to the repository
+
+## build will trigger automatically after a change within a minute
+
+Watch the Build history in jenkins and validate the changes in the tomcat server.
+
 
 
 
