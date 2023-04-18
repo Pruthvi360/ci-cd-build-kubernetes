@@ -35,7 +35,7 @@ sed -i '21,22d' /opt/apache-tomcat-10.1.7/webapps/manager/META-INF/context.xml
 
 cd ~
 
-echo -e "PATH=/usr/local/sbin:/usr/local/bin:b$PATH:b$HOME:bin:b$JAVA_HOME:b$M2_HOME:b$M2\nexport PATH" >> .bash_profile && source .bash_profile
+echo -e "PATH=/usr/local/sbin:/usr/local/bin:b\$PATH:b\$HOME:bin\nexport PATH" >> .bash_profile && source .bash_profile
 
 ln -s /opt/apache-tomcat-10.1.7/bin/startup.sh /usr/local/bin/tomcatup
 ln -s /opt/apache-tomcat-10.1.7/bin/shutdown.sh /usr/local/bin/tomcatdown
@@ -52,12 +52,12 @@ echo "<role rolename="manager-gui"/>
 <role rolename="manager-status"/>
 <user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
 <user username="deployer" password="deployer" roles="manager-script"/>
-<user username="tomcat" password="s3cret" roles="manager-gui"/>" >> /opt/apache-tomcat-10.1.7/conf/tomcat-users.xml
+<user username="tomcat" password="s3cret" roles="manager-gui"/>
+</tomcat-users>" >> /opt/apache-tomcat-10.1.7/conf/tomcat-users.xml
 
 
 ## Starting tomcatserver
 
-tomcatup
 tomcatdown
-
+tomcatup
 
