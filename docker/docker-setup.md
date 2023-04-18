@@ -2,7 +2,16 @@
 
 ## Create compute engine using terraform script
 
+docker.tf
 
+## Run below commands in GCP cloud shell
+
+terraform init
+terraform plan
+terraform apply 
+yes
+
+# Congrats Your docker compute engine is ready.
 
 ### Pre-requisites
 1. GCP Centos Compute instance
