@@ -302,7 +302,6 @@ python3 --version
 ```
 ```
 ansible -m ping localhost
-}
 ```
 ```
 tree /etc/ansible/
