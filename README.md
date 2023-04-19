@@ -324,12 +324,10 @@ sed -i 's/PubkeyAuthentication no/PubkeyAuthentication yes/g' /etc/ssh/sshd_conf
 su - root
 ssh-keygen
 ssh-copy-id <docker-host-ip private or public ip if both are in same VPC>
-
+```
 ## 15.5) Edit Ansible hosts file
 
 ```
 echo -e "docker-host-ip" > /etc/ansible/hosts
-```
-```
 ansible all -m ping
 ```
