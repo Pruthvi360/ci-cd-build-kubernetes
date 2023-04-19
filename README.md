@@ -300,6 +300,7 @@ Refer to **ansible/ansible.tf** file
 ansible --version
 python3 --version
 ```
+```
 ansible -m ping localhost
 }
 ```
