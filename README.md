@@ -309,3 +309,17 @@ tree /etc/ansible/
 ```
 cat /etc/ansible/hosts
 ```
+## 15.3) Setup ansible user in docker server
+```
+useradd ansibleadmin
+passwd ansibleadmin
+sed -i '/%wheel/a ansibleadmin       ALL=(ALL)     NOPASSWD: ALL' /etc/sudoers
+sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
+sed -i 's/PubkeyAuthentication no/PubkeyAuthentication yes/g' /etc/ssh/sshd_config
+```
+
+## 15.4) Generate SSH-KEY IN THE ANSIBLE SERVER
+```
+ssh-keygen
+ssh-copy-id <docker-host-ip private or public ip if both are in same VPC>
