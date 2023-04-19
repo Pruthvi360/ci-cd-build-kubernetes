@@ -199,6 +199,14 @@ FROM tomcat:latest
 RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
 COPY ./*.war /usr/local/tomcat/webapps
 
+## 11.2) Docker build
+
+docker build -t mytomcat .
+
+## 11.3) Docker run
+
+docker run -d --name tomcat -p 8082:8080 mytomcat
+
 ## 12) Integrate Docker with Jenkins
 
 ![image](https://user-images.githubusercontent.com/107435692/232973106-65e051aa-d651-4229-8896-27f0d2908b67.png)
