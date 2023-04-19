@@ -211,7 +211,27 @@ docker run -d --name tomcat -p 8082:8080 mytomcat
 
 ![image](https://user-images.githubusercontent.com/107435692/232973106-65e051aa-d651-4229-8896-27f0d2908b67.png)
 
-## 12.1)
+## 12.1) Create Dockeradmin in Docker server
+
+useradd dockeradmin
+passwd
+usermod -aG docker dockeradmin
+
+## 12.2) Change ssh_config file in docker server
+
+nano /etc/ssh/sshd_config
+
+passwordAuthentication yes
+
+## 12.3) Install Publish over SSH plugin in jenkins
+
+Click Dashboard > manage jenkins > plugins > available > Search Publish over SSH > install without restart
+
+## 12.4) Configure jenkins system setting
+
+Click Dashboard > manage jenkins > click system > scroll down > publish over ssh > add > enter ip (public/private) > dockeradmin: password
+
+## 13) Deploy container
 
 
 
