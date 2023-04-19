@@ -259,6 +259,24 @@ COPY ./*.war /usr/local/tomcat/webapps" > Dockerfile
 docker build -t app:v2 .
 docker run -d --name myfirstapp -p 8087:8080 app:v2
 
+## 13.1) Delete unused container and images
+
+docker container prune 
+docker images prune -a 
+
+## 13.2) Fix docker issues in automation
+
+Edit Exec commads in the Post Build Actions:
+echo -e "FROM tomcat:latest
+RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
+COPY ./*.war /usr/local/tomcat/webapps" > Dockerfile
+
+CONTAINER=myfirstapp
+docker build -t app:v1 .
+docker stop $CONTAINER
+docker rm $CONTAINER
+docker run -d --name $CONTAINER -p 8087:8080 app:v1
+
 ## 14) 
 
 
