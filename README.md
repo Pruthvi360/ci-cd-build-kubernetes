@@ -229,9 +229,22 @@ Click Dashboard > manage jenkins > plugins > available > Search Publish over SSH
 
 ## 12.4) Configure jenkins system setting
 
-Click Dashboard > manage jenkins > click system > scroll down > publish over ssh > add > enter ip (public/private) > dockeradmin: password
+Click Dashboard > manage jenkins > click system > scroll down > publish over ssh > add > enter ip (public/private) > dockeradmin: password apply and save
+
+## 12.5) set up the docker host
+
+mkdir /opt/docker cd docker
+echo -e "FROM tomcat:latest
+RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
+COPY ./*.war /usr/local/tomcat/webapps" > Dockerfile
 
 ## 13) Deploy container
+
+1. Click Dashboard > New Item > Name: Build_and_deploy_container > Description: Build code with help of maven and deploy it on tomcat docker container.
+2. Source code manangement > Check Git > git url: > Check it is master > Build Triggers: Poll SCM : * * * * * > 
+3. Build > Root POM: pom.xml > Goal and Options: clean install 
+4. Post Build Action: Name: dockehost > Transfers: webapp/target/*.war > Remove prefix: webapp/target > Remote Directory: //opt//docker
+5. Exec command : cd /opt/docker; 
 
 
 
