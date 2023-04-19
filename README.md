@@ -277,7 +277,23 @@ docker stop $CONTAINER
 docker rm $CONTAINER
 docker run -d --name $CONTAINER -p 8087:8080 app:v1
 
-## 14) 
+## 14) Ansible Installation
 
+![image](https://user-images.githubusercontent.com/107435692/233016943-664cc9f9-47dd-457c-b00a-3bb985d6a978.png)
 
- 
+## 15) Manange Dockerhost with ansible
+
+![image](https://user-images.githubusercontent.com/107435692/233034226-ecca8cdd-51b5-4758-9dc3-5f8bb25eb5ee.png)
+
+## 15.1) Use the ansible.tf to create the ansible contol host
+
+Refer to **ansible/ansible.tf** file
+
+## 15.2) Post creation of the Ansible Control host
+```
+ansible -m ping localhost
+localhost | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+```
