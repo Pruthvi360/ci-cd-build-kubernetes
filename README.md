@@ -9,9 +9,9 @@
 Run jekins setup script
 
 ## 1.1) get password for login
-
+```
 cat /var/lib/jenkins/secrets/initialAdminPassword
-
+```
 ## 1.2) Create a user
 
 ## 2) RUN FIRST JOB
@@ -23,21 +23,21 @@ Click new item > Name: Hello world > select freestyle project > Build Steps > Se
 Click on Build now > Check build history > See output.
 
 ## 2.2) SSH into the Machine to check the jobs directory all jobs are listed in the dirctory.
-
+```
 cat /var/lib/jenkins/workspace/
-
+```
 ## 3) Integrate Git with Jenkins
 
 ![image](https://user-images.githubusercontent.com/107435692/232690489-50066483-f6ef-411d-9122-0e0b29e814b3.png)
 
 ## 3.1) Rename hostname to jenkins-server
-
+```
 echo "jenkins-server" > /etc/hostname
-
+```
 ## 3.2) Install git
-
+```
 yum install git -y & git -v
-
+```
 ## 3.3) Install github plugin on jenkins GUI
 
 Click Dashboard > manage jenkins > manage pulgins > Avaliable > Search for github > check and click on install without restart.
@@ -53,9 +53,9 @@ Click Dashboard > new item > Name: PUllcodefromgitRepo > source code management 
 ## 4.1) RUN THE JOB & check the pulled repositoy.
 
 Click on build now > check the build history successfull.
-
+```
 cd /var/lib/jenkins/workspace/PullcodefromGitRepo
-
+```
 ## 5) Integrate Maven with Jenkins
 
 ![image](https://user-images.githubusercontent.com/107435692/232700535-6415afa6-399b-423f-99ca-6c4ccf42f6ad.png)
@@ -64,43 +64,49 @@ cd /var/lib/jenkins/workspace/PullcodefromGitRepo
 
 Search maven install & maven download > copy link from the maven download **Binary tar.gz archive**.
 # Go to terminal
-
+```
 cd /opt
-
+```
 # download the maven
 
 wget https://dlcdn.apache.org/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz
 
 # unzip downloaded file
-
+```
 tar xzvf apache-maven-3.9.1-bin.tar.gz
-
+```
 # Rename dir to maven
+```
 mv apache-maven-3.9.1 maven
-
+```
 # check the version of maven
-
+```
 /opt/maven/bin/mvn -v
-
+```
 # JAVA HOME PATH TO SET IT AS ENVIRONMENT VARIABLE
+```
 M2_HOME=/opt/maven
 M2=/opt/maven/bin
 JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.el9.x86_64
-
+```
 # TO find java home path
+```
 find / -name java-11*  
+```
 OUTPUT= /usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.el9.x86_64
 
 ## Export the variable to .bash_profile (check before executing file there should not be any path entry)
-
+```
 echo -e "M2_HOME=/opt/maven\nM2=/opt/maven/bin\nJAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.el9.x86_64\nPATH=b\$PATH:b\$HOME:bin:b\$JAVA_HOME:b\$M2_HOME:b\$M2\nexport PATH" >> .bash_profile && source .bash_profile
-
+```
 ## validate path 
+```
 echo $PATH
-
+```
 # check maven version
+```
 mvn -v
-
+```
 
 ## 5.2) ADD MAVEN PLUGIN
 
@@ -164,18 +170,18 @@ Click Dashboard > manage jenkins > plugins > available > Search: Deploy to conti
 ## 9) Automate Deploy When any changes in the git repo for every 1 minute
 
 Modify the existing job and Select
-
+```
 git clone https://github.com/Pruthvi360/ci-cd-hello-world.git
-
+```
 Edit index.jsp
-
+```
 git status                           > It should be **modified** state
 git add .                            > In the current directory state should be **staging**
 git commit -m "Auto Tigger to CI/CD" > In the state **commited** ready to push
 git remote -v                        > used to show the remotes mapped to git remote repository
 git branch                           > Check the branch
 git push origin master               > push the commited changes to the repository
-
+```
 ## 9.1) build will trigger automatically after a change within a minute
 
 Watch the Build history in jenkins and validate the changes in the tomcat server.
@@ -194,35 +200,35 @@ Refer the Docker-install.md file
 ![image](https://user-images.githubusercontent.com/107435692/232956414-2b62078d-5b45-4723-aeba-4d121e380c7b.png)
 
 ## 11.1) Write a docker file
-
+```
 FROM tomcat:latest
 RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
 COPY ./*.war /usr/local/tomcat/webapps
-
+```
 ## 11.2) Docker build
-
+```
 docker build -t mytomcat .
-
+```
 ## 11.3) Docker run
-
+```
 docker run -d --name tomcat -p 8082:8080 mytomcat
-
+```
 ## 12) Integrate Docker with Jenkins
 
 ![image](https://user-images.githubusercontent.com/107435692/232973106-65e051aa-d651-4229-8896-27f0d2908b67.png)
 
 ## 12.1) Create Dockeradmin in Docker server
-
+```
 useradd dockeradmin
 passwd
 usermod -aG docker dockeradmin
-
+```
 ## 12.2) Change ssh_config file in docker server
-
+```
 nano /etc/ssh/sshd_config
 
 passwordAuthentication yes
-
+```
 ## 12.3) Install Publish over SSH plugin in jenkins
 
 Click Dashboard > manage jenkins > plugins > available > Search Publish over SSH > install without restart
@@ -232,7 +238,7 @@ Click Dashboard > manage jenkins > plugins > available > Search Publish over SSH
 Click Dashboard > manage jenkins > click system > scroll down > publish over ssh > add > enter ip (public/private) > dockeradmin: password apply and save
 
 ## 12.5) set up the docker host
-
+```
 passwd root
 
 echo -e "FROM tomcat:latest
@@ -241,7 +247,7 @@ COPY ./*.war /usr/local/tomcat/webapps" > Dockerfile
 
 docker build -t app:v1 .
 docker run -d --name myfirstapp -p 8087:8080 app:v1
-
+```
 ## 12.4) Configure jenkins system setting
 
 Click Dashboard > manage jenkins > click system > scroll down > publish over ssh > add > enter hostname (public/private) > username: root: password apply and save
@@ -260,12 +266,12 @@ docker build -t app:v2 .
 docker run -d --name myfirstapp -p 8087:8080 app:v2
 
 ## 13.1) Delete unused container and images
-
+```
 docker container prune 
 docker images prune -a 
-
+```
 ## 13.2) Fix docker issues in automation
-
+```
 Edit Exec commads in the Post Build Actions:
 echo -e "FROM tomcat:latest
 RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
@@ -276,7 +282,7 @@ docker build -t app:v1 .
 docker stop $CONTAINER
 docker rm $CONTAINER
 docker run -d --name $CONTAINER -p 8087:8080 app:v1
-
+```
 ## 14) Ansible Installation
 
 ![image](https://user-images.githubusercontent.com/107435692/233016943-664cc9f9-47dd-457c-b00a-3bb985d6a978.png)
