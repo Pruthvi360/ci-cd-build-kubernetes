@@ -189,6 +189,18 @@ Watch the Build history in jenkins and validate the changes in the tomcat server
 Refer the Docker-install.md file
 
 
+## 11) Docker file
+
+![image](https://user-images.githubusercontent.com/107435692/232956414-2b62078d-5b45-4723-aeba-4d121e380c7b.png)
+
+## 11.1) Write a docker file
+
+FROM tomcat:latest
+RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
+COPY ./*.war /usr/local/tomcat/webapps
+
+
+
 
 
 
