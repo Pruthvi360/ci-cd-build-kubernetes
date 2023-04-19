@@ -291,9 +291,15 @@ Refer to **ansible/ansible.tf** file
 
 ## 15.2) Post creation of the Ansible Control host
 ```
+ansible --version
+python3 --version
+```
 ansible -m ping localhost
-localhost | SUCCESS => {
-    "changed": false,
-    "ping": "pong"
 }
+```
+```
+tree /etc/ansible/
+```
+```
+cat /etc/ansible/hosts
 ```
