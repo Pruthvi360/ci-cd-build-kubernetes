@@ -199,7 +199,11 @@ FROM tomcat:latest
 RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
 COPY ./*.war /usr/local/tomcat/webapps
 
+## 12) Integrate Docker with Jenkins
 
+![image](https://user-images.githubusercontent.com/107435692/232973106-65e051aa-d651-4229-8896-27f0d2908b67.png)
+
+## 12.1)
 
 
 
