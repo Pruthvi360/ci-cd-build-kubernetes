@@ -326,6 +326,7 @@ ssh-keygen
 ssh-copy-id <docker-host-ip private or public ip if both are in same VPC>
 
 ## 15.5) Edit Ansible hosts file
+
 ```
 echo "<docker-host-ip>" > /etc/ansible/hosts
 ansible all -m ping
