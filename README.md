@@ -330,4 +330,5 @@ ssh-copy-id <docker-host-ip private or public ip if both are in same VPC>
 ```
 echo -e "docker-host-ip" > /etc/ansible/hosts
 ansible all -m ping
+ansible all -m command -a uptime
 ```
