@@ -233,18 +233,33 @@ Click Dashboard > manage jenkins > click system > scroll down > publish over ssh
 
 ## 12.5) set up the docker host
 
-mkdir /opt/docker cd docker
+passwd root
+
 echo -e "FROM tomcat:latest
 RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
 COPY ./*.war /usr/local/tomcat/webapps" > Dockerfile
+
+docker build -t app:v1 .
+docker run -d --name myfirstapp -p 8087:8080 app:v1
+
+## 12.4) Configure jenkins system setting
+
+Click Dashboard > manage jenkins > click system > scroll down > publish over ssh > add > enter hostname (public/private) > username: root: password apply and save
 
 ## 13) Deploy container
 
 1. Click Dashboard > New Item > Name: Build_and_deploy_container > Description: Build code with help of maven and deploy it on tomcat docker container.
 2. Source code manangement > Check Git > git url: > Check it is master > Build Triggers: Poll SCM : * * * * * > 
 3. Build > Root POM: pom.xml > Goal and Options: clean install 
-4. Post Build Action: Name: dockehost > Transfers: webapp/target/*.war > Remove prefix: webapp/target > Remote Directory: //opt//docker
-5. Exec command : cd /opt/docker; 
+4. Post Build Action: Name: root > Transfers: webapp/target/*.war > Remove prefix: webapp/target > Remote Directory: //opt//docker
+5. Exec command : echo -e "FROM tomcat:latest
+RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
+COPY ./*.war /usr/local/tomcat/webapps" > Dockerfile
+
+docker build -t app:v2 .
+docker run -d --name myfirstapp -p 8087:8080 app:v2
+
+## 14) 
 
 
 
