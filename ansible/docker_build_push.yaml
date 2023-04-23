@@ -1,0 +1,67 @@
+--
+
+- hosts: localhost
+
+  become: true
+
+  tasks:
+
+  - name: Log into DockerHub
+
+    community.docker.docker_login:
+
+      username: pruthvidevops
+
+      password: Zero@12s360
+
+
+
+  - name: stop if we have old docker container
+
+    command: docker stop myfirstapp
+
+    ignore_errors: yes
+
+
+
+  - name: remove stopped docker container
+
+    command: docker rm myfirstapp
+
+    ignore_errors: yes
+
+
+
+  - name: remove current docker image
+
+    command: docker rmi app:v1
+
+    ignore_errors: yes
+
+
+
+  - name: building docker image
+
+    command: docker build -t app:v1 .
+
+    args:
+
+      chdir: /home/ansibleadmin
+
+
+
+  - name: creating docker image
+
+    command: docker run -d --name myfirstapp -p 8080:8080 app:v1
+
+
+
+  - name: tag the created docker image to push into docker hub
+
+    command: docker tag app:v1 pruthvidevops/deveops:app-v1
+
+
+
+  - name: push the built image to docker hub
+
+    command: docker push pruthvidevops/deveops:app-v1
