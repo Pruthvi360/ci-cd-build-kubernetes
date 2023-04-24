@@ -449,5 +449,108 @@ gcloud beta container --project "<Project-id>" clusters create "ci-cd" --zone "u
 ```
 gcloud container clusters get-credentials ci-cd --zone us-central1-c --project <project-id>
 ```
+## 20.1) Create deployment and service YAML files
+```
+nano deployment.yaml
+```
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ci-cd
+  labels:
+     app: myfirst-app
 
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myfirst-app
 
+  template:
+    metadata:
+      labels:
+        app: myfirst-app
+
+    spec:
+      containers:
+      - name: myfirst-app
+        image: pruthvidevops/deveops:app-v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+```
+```
+nano service-expose.yaml
+```
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: ci-cd-service
+  labels:
+    app: myfirst-app
+spec:
+  selector:
+    app: myfirst-app
+    
+  ports:
+    - port: 8080
+      targetPort: 8080
+
+  type: LoadBalancer
+  ```
+## 20.2) deploy the deployment.yaml and service-expose.yaml
+```
+kubectl apply -f deployment.yaml
+
+watch kubectl get pods
+
+kubectl apply -f service-expose.yaml
+
+watch kubectl get svc
+```
+## 21) Create a jenkins JOB
+
+1. Create and new job with by copying the previous **docker build and push JOB**
+2. add EXEC commands
+```
+echo -e "FROM tomcat:latest
+RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
+COPY ./*.war /usr/local/tomcat/webapps" > Dockerfile ;
+
+ansible-playbook /etc/ansible/docker.yaml
+
+gcloud container clusters get-credentials ci-cd --zone us-central1-c --project qwiklabs-gcp-02-701d60ba3040
+
+kubectl delete deployment ci-cd
+kubectl apply -f deployment.yaml
+kubectl apply -f service-expose.yaml
+```
+
+## 21.1) Commit from the local repo
+```
+git init
+git pull
+git add .
+git commit -m "Deploying to kubernetes"
+git push
+```
+**Do Some changes in the index.jsp and perform the above steps**
+
+## 22) After completion of the jenkins JOB
+
+```
+kubectl get svc
+```
+```
+http:<LoadBalaner-ip>:8080/webapp/
+```
+##------------------------------------------------NOW YOU SUCCESSFULLY ESTABLISHED THE CI-CD PIPELINE FOR THE ENTIRE DEPLOYMENT--------------------------------------##
+
+##------------------------------------------------------------------------THANKS FOR WATCHING------------------------------------------------------------------------##
