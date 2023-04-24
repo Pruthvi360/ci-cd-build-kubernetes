@@ -332,3 +332,122 @@ echo -e "docker-host-ip" > /etc/ansible/hosts
 ansible all -m ping
 ansible all -m command -a uptime
 ```
+
+## 16) docker push to container
+
+```
+dokcer is install in the same ansible server
+add **ansibleadmin** user to the **docker** group
+update hosts file 
+[localhost]
+127.0.0.1 ansible_user=root ansible_ssh_pass=1996
+```
+
+## 16.1) create a ansible playbook to build and push to the docker hub
+```
+1. Create a docker account
+2. create a repo
+3. retag the image with 
+  ** docker tag <local-image:tag> <docker-username>/<repo>:tag**
+4. Push the docker image to docker hub
+
+5. Create playbook 
+```
+---
+- hosts: localhost
+  become: true
+  tasks:
+  - name: Log into DockerHub
+    community.docker.docker_login:
+      username: <>
+      password: <>
+
+  - name: stop if we have old docker container
+    command: docker stop myfirstapp
+    ignore_errors: yes
+
+  - name: remove stopped docker container
+    command: docker rm myfirstapp
+    ignore_errors: yes
+
+  - name: remove current docker image
+    command: docker rmi app:v1
+    ignore_errors: yes
+
+  - name: building docker image
+    command: docker build -t app:v1 .
+    args:
+      chdir: /home/ansibleadmin
+
+  - name: creating docker image
+    command: docker run -d --name myfirstapp -p 8080:8080 app:v1
+
+  - name: tag the created docker image to push into docker hub
+    command: docker tag app:v1 pruthvidevops/deveops:app-v1
+
+  - name: push the built image to docker hub
+    command: docker push pruthvidevops/deveops:app-v1
+```
+6. Run the docker playbook
+```
+ansible-playbook /etc/ansible/docker.yaml
+```
+```
+
+## 17) create the new jenkins job
+```
+Copy the previous the jenkins job and create new job.
+Replace the Exec commands with
+```
+echo -e "FROM tomcat:latest
+RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
+COPY ./*.war /usr/local/tomcat/webapps" > Dockerfile ;
+
+ansible-playbook /etc/ansible/docker.yaml
+```
+```
+## 18) setup google sdk and cli and install kubectl plugins
+
+## 18.1) gcloud CLI configuration
+```
+sudo snap install google-cloud-cli --classic
+
+gcloud auth login
+
+gcloud config set project qwiklabs-gcp-02-ea4ca0d66fa5
+
+sudo snap install google-cloud-sdk --classic
+```
+## 18.2) gcloud SDK installation parts
+```
+sudo apt-get install apt-transport-https ca-certificates gnupg -y
+
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+
+sudo apt-get update && sudo apt-get install google-cloud-cli
+
+sudo apt-get install google-cloud-cli-gke-gcloud-auth-plugin
+
+gcloud init
+```
+
+## 18.3) kubernetes configuration 
+```
+gcloud components install kubectl
+
+gcloud components install gke-gcloud-auth-plugin
+
+sudo apt-get install google-cloud-cli-gke-gcloud-auth-plugin
+```
+## 19) Create Kubernetes container
+```
+gcloud beta container --project "<Project-id>" clusters create "ci-cd" --zone "us-central1-c" --no-enable-basic-auth --cluster-version "1.25.7-gke.1000" --release-channel "regular" --machine-type "e2-medium" --image-type "COS_CONTAINERD" --disk-type "pd-balanced" --disk-size "100" --metadata disable-legacy-endpoints=true --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" --max-pods-per-node "110" --num-nodes "3" --logging=SYSTEM,WORKLOAD --monitoring=SYSTEM --enable-ip-alias --network "projects/qwiklabs-gcp-03-b499196e43ab/global/networks/default" --subnetwork "projects/qwiklabs-gcp-03-b499196e43ab/regions/us-central1/subnetworks/default" --no-enable-intra-node-visibility --default-max-pods-per-node "110" --no-enable-master-authorized-networks --addons HorizontalPodAutoscaling,HttpLoadBalancing,GcePersistentDiskCsiDriver --enable-autoupgrade --enable-autorepair --max-surge-upgrade 1 --max-unavailable-upgrade 0 --enable-shielded-nodes --node-locations "us-central1-c"
+```
+## 20) deploy dokcer image to kubernetes 
+```
+gcloud container clusters get-credentials ci-cd --zone us-central1-c --project <project-id>
+```
+
+
