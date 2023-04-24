@@ -353,6 +353,7 @@ update hosts file
 
 5. Create playbook 
 ```
+```
 ---
 - hosts: localhost
   become: true
@@ -391,7 +392,6 @@ update hosts file
 6. Run the docker playbook
 ```
 ansible-playbook /etc/ansible/docker.yaml
-```
 ```
 
 ## 17) create the new jenkins job
@@ -441,7 +441,7 @@ gcloud components install gke-gcloud-auth-plugin
 
 sudo apt-get install google-cloud-cli-gke-gcloud-auth-plugin
 ```
-## 19) Create Kubernetes container
+## 19) Create GKE Kubernetes container
 ```
 gcloud beta container --project "<Project-id>" clusters create "ci-cd" --zone "us-central1-c" --no-enable-basic-auth --cluster-version "1.25.7-gke.1000" --release-channel "regular" --machine-type "e2-medium" --image-type "COS_CONTAINERD" --disk-type "pd-balanced" --disk-size "100" --metadata disable-legacy-endpoints=true --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" --max-pods-per-node "110" --num-nodes "3" --logging=SYSTEM,WORKLOAD --monitoring=SYSTEM --enable-ip-alias --network "projects/qwiklabs-gcp-03-b499196e43ab/global/networks/default" --subnetwork "projects/qwiklabs-gcp-03-b499196e43ab/regions/us-central1/subnetworks/default" --no-enable-intra-node-visibility --default-max-pods-per-node "110" --no-enable-master-authorized-networks --addons HorizontalPodAutoscaling,HttpLoadBalancing,GcePersistentDiskCsiDriver --enable-autoupgrade --enable-autorepair --max-surge-upgrade 1 --max-unavailable-upgrade 0 --enable-shielded-nodes --node-locations "us-central1-c"
 ```
