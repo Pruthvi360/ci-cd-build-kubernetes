@@ -551,6 +551,6 @@ kubectl get svc
 ```
 http:<LoadBalaner-ip>:8080/webapp/
 ```
-##-------------------------**NOW YOU SUCCESSFULLY ESTABLISHED THE CI-CD PIPELINE FOR THE ENTIRE DEPLOYMENT**-----------------------##
+##----------------------**NOW YOU SUCCESSFULLY ESTABLISHED THE CI-CD PIPELINE FOR THE ENTIRE DEPLOYMENT**--------------------##
 
 ##------------------------------------------------------**THANKS FOR WATCHING**--------------------------------------------------------##
