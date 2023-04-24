@@ -2,6 +2,11 @@
 
 ![image](https://user-images.githubusercontent.com/107435692/232263168-5e313482-4b53-4824-88f3-fa2a71cfca66.png)
 
+## Workflow for the CI/CD
+
+![image](https://user-images.githubusercontent.com/107435692/233944846-55258b13-337d-4768-a828-b2461597a477.png)
+
+
 ##  **STEPS FOR CI/CD PIPELINE USING JENKINS** 
 
 ## 1) jenkins set up
