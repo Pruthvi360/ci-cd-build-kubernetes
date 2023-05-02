@@ -38,8 +38,8 @@ sed -i '19,20d' /opt/apache-tomcat-10.1.8/webapps/docs/META-INF/context.xml
 
 #echo -e "PATH=/usr/local/sbin:/usr/local/bin:b\$PATH:b\$HOME:bin\nexport PATH" >> .bash_profile && source .bash_profile
 
-ln -s /opt/apache-tomcat-10.1.8/bin/startup.sh /usr/local/bin/tomcatup
-ln -s /opt/apache-tomcat-10.1.8/bin/shutdown.sh /usr/local/bin/tomcatdown
+ln -s /opt/apache-tomcat-10.1.8/bin/startup.sh /usr/bin/tomcatup
+ln -s /opt/apache-tomcat-10.1.8/bin/shutdown.sh /usr/bin/tomcatdown
 
 ## delete users
 
