@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-install java 11
+#install java 11
 
 sudo yum install java-11-openjdk -y
 
@@ -38,8 +38,8 @@ sed -i '19,20d' /opt/apache-tomcat-10.1.8/webapps/docs/META-INF/context.xml
 
 #echo -e "PATH=/usr/local/sbin:/usr/local/bin:b\$PATH:b\$HOME:bin\nexport PATH" >> .bash_profile && source .bash_profile
 
-ln -s /opt/apache-tomcat-10.1.8/bin/startup.sh /usr/local/sbin/tomcatup
-ln -s /opt/apache-tomcat-10.1.8/bin/shutdown.sh /usr/local/sbin/tomcatdown
+ln -s /opt/apache-tomcat-10.1.8/bin/startup.sh /usr/local/bin/tomcatup
+ln -s /opt/apache-tomcat-10.1.8/bin/shutdown.sh /usr/local/bin/tomcatdown
 
 ## delete users
 
@@ -55,7 +55,7 @@ echo "
   <user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
   <user username="deployer" password="deployer" roles="manager-script"/>
   <user username="tomcat" password="s3cret" roles="manager-gui"/>
-  </tomcat-users>" >> /opt/apache-tomcat-10.1.8/conf/tomcat-users.xml
+</tomcat-users>" >> /opt/apache-tomcat-10.1.8/conf/tomcat-users.xml
 
 
 ## Starting tomcatserver
