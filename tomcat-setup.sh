@@ -15,7 +15,7 @@ yum install nano -y
 
 cd /opt
 wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.8/bin/apache-tomcat-10.1.8.tar.gz
-tar -xvzf /opt/apache-tomcat-10.1.7.tar.gz
+tar -xvzf /opt/apache-tomcat-10.1.8.tar.gz
 
 ## change execution permission
 
