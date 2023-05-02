@@ -5,8 +5,8 @@
   tasks:
   - name: Log into DockerHub
     community.docker.docker_login:
-      username: pruthvidevops
-      password: Zero@12s360
+      username: <Username>
+      password: <password>
 
   - name: stop if we have old docker container
     command: docker stop myfirstapp
