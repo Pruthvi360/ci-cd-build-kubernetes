@@ -19,18 +19,18 @@ tar -xvzf /opt/apache-tomcat-10.1.8.tar.gz
 
 ## change execution permission
 
-chmod +x /opt/apache-tomcat-10.1.7/bin/startup.sh 
-chmod +x /opt/apache-tomcat-10.1.7/bin/shutdown.sh
+chmod +x /opt/apache-tomcat-10.1.8/bin/startup.sh 
+chmod +x /opt/apache-tomcat-10.1.8/bin/shutdown.sh
 
 ## Run startup.sh
 
-/opt/apache-tomcat-10.1.7/bin/startup.sh
+/opt/apache-tomcat-10.1.8/bin/startup.sh
 
 ## Editing context.xml to make sure the it is accessable from outside than local host 127.0.0.0
 
-sed -i '21,22d' /opt/apache-tomcat-10.1.7/webapps/host-manager/META-INF/context.xml
-sed -i '21,22d' /opt/apache-tomcat-10.1.7/webapps/manager/META-INF/context.xml
-sed -i '19,20d' /opt/apache-tomcat-10.1.7/webapps/docs/META-INF/context.xml
+sed -i '21,22d' /opt/apache-tomcat-10.1.8/webapps/host-manager/META-INF/context.xml
+sed -i '21,22d' /opt/apache-tomcat-10.1.8/webapps/manager/META-INF/context.xml
+sed -i '19,20d' /opt/apache-tomcat-10.1.8/webapps/docs/META-INF/context.xml
 
 ## create link files for tomcat startup.sh and shutdown.sh
 
@@ -38,12 +38,12 @@ sed -i '19,20d' /opt/apache-tomcat-10.1.7/webapps/docs/META-INF/context.xml
 
 #echo -e "PATH=/usr/local/sbin:/usr/local/bin:b\$PATH:b\$HOME:bin\nexport PATH" >> .bash_profile && source .bash_profile
 
-ln -s /opt/apache-tomcat-10.1.7/bin/startup.sh /usr/local/sbin/tomcatup
-ln -s /opt/apache-tomcat-10.1.7/bin/shutdown.sh /usr/local/sbin/tomcatdown
+ln -s /opt/apache-tomcat-10.1.8/bin/startup.sh /usr/local/sbin/tomcatup
+ln -s /opt/apache-tomcat-10.1.8/bin/shutdown.sh /usr/local/sbin/tomcatdown
 
 ## delete users
 
-sed -i '49,56d' /opt/apache-tomcat-10.1.7/conf/tomcat-users.xml
+sed -i '49,56d' /opt/apache-tomcat-10.1.8/conf/tomcat-users.xml
 
 ## Insert users
 
@@ -55,7 +55,7 @@ echo "
   <user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
   <user username="deployer" password="deployer" roles="manager-script"/>
   <user username="tomcat" password="s3cret" roles="manager-gui"/>
-  </tomcat-users>" >> /opt/apache-tomcat-10.1.7/conf/tomcat-users.xml
+  </tomcat-users>" >> /opt/apache-tomcat-10.1.8/conf/tomcat-users.xml
 
 
 ## Starting tomcatserver
