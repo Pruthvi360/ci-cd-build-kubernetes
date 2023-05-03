@@ -1,11 +1,25 @@
 #!/usr/bin/env bash
+
+clear
+
+echo "
+###################################################################
+#                                                                 #
+# AUTHOR: PRUTHVI S                                               #
+# DATE: 07-04-23                                                  #
+# PURPOSE: BASE SCRIPTING                                         #
+#                                                                 #
+###################################################################
+"
+
+
 if [[ $(id -u) -ne 0 ]]
 then
 	echo "Please run this script from root only"
 	exit 1
 fi
 
-if [[ $(cat /etc/os-release | awk -F= '/NAME=/  && NR==1 { print $2 }' | tr -d '"' | tr [A-Z] [a-z] ) != ubuntu ]]
+if [[ $(cat /etc/os-release | awk -F= '/NAME=/  && NR==1 { print $2 }' | tr -d '"' | tr [A-Z] [a-z] | cut -d " " -f 1 ) != ubuntu ]]
 then
 	echo "This script works for only ubuntu"
 	echo "Thank you!!!"
