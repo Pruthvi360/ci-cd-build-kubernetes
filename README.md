@@ -250,7 +250,7 @@ Click Dashboard > manage jenkins > click system > scroll down > publish over ssh
 
 ## 12.5) set up the docker host
 ```
-echo -e "FROM tomcat:latest
+sudo echo -e "FROM tomcat:latest
 RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
 COPY ./*.war /usr/local/tomcat/webapps" > Dockerfile
 
