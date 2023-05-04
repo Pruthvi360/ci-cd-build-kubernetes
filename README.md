@@ -329,7 +329,21 @@ sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_
 sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
 sed -i 's/PubkeyAuthentication no/PubkeyAuthentication yes/g' /etc/ssh/sshd_config
 ```
+## Toubleshoot problem faced
+```
+step1
+sudo nano /etc/default/locale
 
+step2
+LANG="en_US.UTF-8"
+LC_CTYPE="en_US.UTF-8"
+
+step3
+sudo update-locale LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8
+
+step4
+Finally restart your machine
+```
 ## 15.4) Generate SSH-KEY IN THE ANSIBLE SERVER
 ```
 su - root
