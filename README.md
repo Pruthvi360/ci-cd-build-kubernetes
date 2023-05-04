@@ -227,6 +227,12 @@ docker run -d --name tomcat -p 8082:8080 mytomcat
 useradd dockeradmin
 passwd
 usermod -aG docker dockeradmin
+usermod -aG sudo dockeradmin
+sudo usermod -s /bin/bash dockeradmin
+mkdir /home/dockeradmin
+sudo chown dockeradmin:dockeradmin dockeradmin
+visudo
+%dockeradmin ALL=(ALL:ALL)  NOPASSWD:ALL
 ```
 ## 12.2) Change ssh_config file in docker server
 ```
@@ -244,8 +250,6 @@ Click Dashboard > manage jenkins > click system > scroll down > publish over ssh
 
 ## 12.5) set up the docker host
 ```
-passwd root
-
 echo -e "FROM tomcat:latest
 RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
 COPY ./*.war /usr/local/tomcat/webapps" > Dockerfile
@@ -269,6 +273,7 @@ COPY ./*.war /usr/local/tomcat/webapps" > Dockerfile
 
 docker build -t app:v2 .
 docker run -d --name myfirstapp -p 8087:8080 app:v2
+
 
 ## 13.1) Delete unused container and images
 ```
