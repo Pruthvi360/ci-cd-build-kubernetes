@@ -288,9 +288,10 @@ RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
 COPY ./*.war /usr/local/tomcat/webapps" > Dockerfile
 
 CONTAINER=myfirstapp
-docker build -t app:v1 .
 docker stop $CONTAINER
 docker rm $CONTAINER
+docker rmi app:v1
+docker build -t app:v1 .
 docker run -d --name $CONTAINER -p 8087:8080 app:v1
 ```
 ## 14) Ansible Installation
