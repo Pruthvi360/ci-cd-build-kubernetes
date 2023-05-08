@@ -37,3 +37,9 @@ gcloud container clusters get-credentials <gke-cluster-name> --region us-central
 kubectl get nodes
 kubectl get pods
 ```
+
+## Step 6
+
+```
+terraform destroy -var "project_id=<your-project-id>" -auto-approve
+```
