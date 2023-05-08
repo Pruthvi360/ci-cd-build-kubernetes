@@ -4,6 +4,7 @@
 Create service account in the gcloud account and give 
 1. kubernetes admin privilege
 2. compute admin privilege
+3. service account user privilege
 ```
 
 ## Create service-account json key
