@@ -16,10 +16,24 @@ Download the json key and keep in the terraform dir
 ```
 sudo snap install terraform --classic
 ```
+## Step 3
 ## Terraform init
 
 ```
 terraform init
 terraform plan -var "project_id=<your-project-id>"
 terraform apply -var "project_id=<your-project-id>" -auto-approve
+```
+
+## Step 4
+
+```
+gcloud container clusters get-credentials <gke-cluster-name> --region us-central1 --project <project_id>
+```
+
+## Step 5
+
+```
+kubectl get nodes
+kubectl get pods
 ```
